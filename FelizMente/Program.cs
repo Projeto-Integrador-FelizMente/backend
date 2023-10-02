@@ -25,6 +25,7 @@ namespace FelizMente
 
             builder.Services.AddTransient<IValidator<Tema>, TemaValidator>();
             builder.Services.AddTransient<IValidator<User>, UserValidator>();
+            builder.Services.AddTransient<IValidator<Postagem>, PostagemValidator>();
 
             builder.Services.AddScoped<ITemaService, TemaService>();
             builder.Services.AddScoped<IUserService, UserService>();

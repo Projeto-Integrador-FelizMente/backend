@@ -12,11 +12,54 @@ namespace FelizMente.Data
 
             modelBuilder.Entity<Tema>().ToTable("tb_temas");
             modelBuilder.Entity<User>().ToTable("tb_usuarios");
+            modelBuilder.Entity<Postagem>().ToTable("tb_postagens");
+             _= modelBuilder.Entity<Postagem>()
+            .HasOne( _=> _.Tema)
+            .WithMany(t => t.Postagem)
+            .HasForeignKey("TemaId")
+            .OnDelete(DeleteBehavior.Cascade);
 
+            _ = modelBuilder.Entity<Postagem>()
+           .HasOne(_ => _.User)
+           .WithMany(u => u.Postagem)
+           .HasForeignKey("UserId")
+           .OnDelete(DeleteBehavior.Cascade);
 
         }
         public DbSet<Tema> Temas { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Postagem> Postages { get; set; } = null!;
 
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var insertedEntries = this.ChangeTracker.Entries()
+                                   .Where(x => x.State == EntityState.Added)
+                                   .Select(x => x.Entity);
+
+            foreach (var insertedEntry in insertedEntries)
+            {
+                //Se uma propriedade da Classe Auditable estiver sendo criada. 
+                if (insertedEntry is Auditable auditableEntity)
+                {
+                    auditableEntity.Data = new DateTimeOffset(DateTime.Now, new TimeSpan(-3, 0, 0));
+                }
+            }
+
+            var modifiedEntries = ChangeTracker.Entries()
+                       .Where(x => x.State == EntityState.Modified)
+                       .Select(x => x.Entity);
+
+            foreach (var modifiedEntry in modifiedEntries)
+            {
+                //Se uma propriedade da Classe Auditable estiver sendo atualizada.  
+                if (modifiedEntry is Auditable auditableEntity)
+                {
+                    auditableEntity.Data = new DateTimeOffset(DateTime.Now, new TimeSpan(-3, 0, 0));
+                }
+            }
+
+            return base.SaveChangesAsync(cancellationToken);
+        }
     }
+
 }

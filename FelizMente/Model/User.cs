@@ -27,5 +27,7 @@ namespace FelizMente.Model
 
         [Column(TypeName = "bit")]
         public bool Tipo { get; set; }
+        [InverseProperty("User")]
+        public virtual ICollection<Postagem>? Postagem { get; set; }
     }
 }
