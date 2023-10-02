@@ -9,7 +9,7 @@ namespace FelizMente.Validator
         {
             RuleFor(p => p.Titulo)
               .NotEmpty()
-              .MinimumLength(5)
+              .MinimumLength(4)
               .MaximumLength(255);
 
             RuleFor(p => p.Estado)
@@ -19,9 +19,7 @@ namespace FelizMente.Validator
               .NotEmpty()
               .MinimumLength(5);
 
-            RuleFor(p => p.Link)
-              .NotEmpty()
-              .MinimumLength(5)
+            RuleFor(p => p.Link)       
               .MaximumLength(255);
 
         }

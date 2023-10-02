@@ -61,9 +61,13 @@ namespace FelizMente.Service.Implements
         {
             if (postagem.Tema is not null && postagem.User is not null)
             {
-                var BuscarFK = await _context.Temas.FindAsync(postagem.Tema.Id, postagem.User.Id) ;
+                var BuscarFK = await _context.Temas.FindAsync(postagem.Tema.Id);
+                var BuscarUser = await _context.Temas.FindAsync(postagem.User.Id);
 
                 if (BuscarFK is null)
+                    return null;
+                
+                if (BuscarUser is null)
                     return null;
             }
 
@@ -84,9 +88,13 @@ namespace FelizMente.Service.Implements
 
             if (postagem.Tema is not null && postagem.User is not null)
             {
-                var BuscarFK = await _context.Temas.FindAsync(postagem.Tema.Id, postagem.User.Id);
+                var BuscarFK = await _context.Temas.FindAsync(postagem.Tema.Id);
+                var BuscarUser = await _context.Temas.FindAsync(postagem.User.Id);
 
                 if (BuscarFK is null)
+                    return null;
+
+                if (BuscarUser is null)
                     return null;
             }
 
