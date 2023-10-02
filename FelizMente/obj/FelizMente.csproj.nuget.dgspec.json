@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vitor\\OneDrive\\Área de Trabalho\\Projeto Integrador\\backend\\FelizMente\\FelizMente.csproj": {}
+    "D:\\projetos\\PIGeneration\\BackEnd\\backend\\FelizMente\\FelizMente.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vitor\\OneDrive\\Área de Trabalho\\Projeto Integrador\\backend\\FelizMente\\FelizMente.csproj": {
+    "D:\\projetos\\PIGeneration\\BackEnd\\backend\\FelizMente\\FelizMente.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vitor\\OneDrive\\Área de Trabalho\\Projeto Integrador\\backend\\FelizMente\\FelizMente.csproj",
+        "projectUniqueName": "D:\\projetos\\PIGeneration\\BackEnd\\backend\\FelizMente\\FelizMente.csproj",
         "projectName": "FelizMente",
-        "projectPath": "C:\\Users\\vitor\\OneDrive\\Área de Trabalho\\Projeto Integrador\\backend\\FelizMente\\FelizMente.csproj",
-        "packagesPath": "C:\\Users\\vitor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vitor\\OneDrive\\Área de Trabalho\\Projeto Integrador\\backend\\FelizMente\\obj\\",
+        "projectPath": "D:\\projetos\\PIGeneration\\BackEnd\\backend\\FelizMente\\FelizMente.csproj",
+        "packagesPath": "C:\\Users\\mateu\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\PIGeneration\\BackEnd\\backend\\FelizMente\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\vitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mateu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

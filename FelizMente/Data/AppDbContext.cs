@@ -28,7 +28,7 @@ namespace FelizMente.Data
         }
         public DbSet<Tema> Temas { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
-        public DbSet<Postagem> Postages { get; set; } = null!;
+        public DbSet<Postagem> Postagens { get; set; } = null!;
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

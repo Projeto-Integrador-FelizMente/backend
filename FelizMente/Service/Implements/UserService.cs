@@ -16,8 +16,8 @@ namespace FelizMente.Service.Implements
         public async Task<IEnumerable<User>> GetAll()
         {
             return await _context.Users
-                //.Include(u => u.Postagem)
-                .ToListAsync();
+                            .Include(u => u.Postagem)
+                            .ToListAsync();
         }
 
         public async Task<User?> GetById(long id)
@@ -25,8 +25,8 @@ namespace FelizMente.Service.Implements
             try
             {
                 var User = await _context.Users
-                    //.Include(u => u.Postagem)
-                    .FirstAsync(u => u.Id == id);
+                            .Include(u => u.Postagem)
+                            .FirstAsync(u => u.Id == id);
                 return User;
             }
             catch
@@ -38,16 +38,16 @@ namespace FelizMente.Service.Implements
         public async Task<IEnumerable<User>> GetByNome(string nome)
         {
             var User = await _context.Users
-              .Include(u => u.Nome)
-              .Where(u => u.Nome.Contains(nome))
-              .ToListAsync();
+                          .Include(u => u.Postagem)
+                          .Where(u => u.Nome.Contains(nome))
+                          .ToListAsync();
             return User;
         }
 
         public async Task<IEnumerable<User>> GetByTipo(bool tipo)
         {
             var User = await _context.Users
-             .Include(u => u.Tipo)
+             .Include(u => u.Postagem)
              .Where(u => u.Tipo == tipo)
              .ToListAsync();
             return User;

@@ -17,7 +17,7 @@ namespace FelizMente.Service.Implements
         public async Task<IEnumerable<Tema>> GetAll()
         {
             return await _context.Temas
-                //.Include(t => t.Postagem)
+                .Include(t => t.Postagem)
                 .ToListAsync();
         }
         public async Task<Tema?> GetById(long id)
@@ -25,7 +25,7 @@ namespace FelizMente.Service.Implements
             try
             {
                 var Tema = await _context.Temas
-                    //.Include(t => t.Postagem)
+                    .Include(t => t.Postagem)
                     .FirstAsync(i => i.Id == id);
                 return Tema;
             }
@@ -38,7 +38,7 @@ namespace FelizMente.Service.Implements
         public async Task<IEnumerable<Tema>> GetByDescricao(string descricao)
         {
             var Tema = await _context.Temas
-                //.Include(t => t.Postagem)
+                .Include(t => t.Postagem)
                 .Where(t => t.Descricao.Contains(descricao))
                 .ToListAsync();
             return Tema;
@@ -48,7 +48,7 @@ namespace FelizMente.Service.Implements
         public async Task<IEnumerable<Tema>> GetByNome(string nome)
         {
             var Tema = await _context.Temas
-                .Include(t => t.Nome)
+                .Include(t => t.Postagem)
                 .Where(t => t.Nome.Contains(nome))
                 .ToListAsync();
             return Tema;
@@ -56,6 +56,7 @@ namespace FelizMente.Service.Implements
 
         public async Task<Tema?> Create(Tema tema)
         {
+
             await _context.Temas.AddAsync(tema);
             await _context.SaveChangesAsync();
             return tema;
