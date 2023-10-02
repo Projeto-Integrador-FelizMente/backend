@@ -59,20 +59,19 @@ namespace FelizMente.Service.Implements
 
         public async Task<Postagem?> Create(Postagem postagem)
         {
-            if (postagem.Tema is not null && postagem.User is not null)
+            if (postagem.Tema is not null )
             {
                 var BuscarFK = await _context.Temas.FindAsync(postagem.Tema.Id);
-                var BuscarUser = await _context.Temas.FindAsync(postagem.User.Id);
-
+               
                 if (BuscarFK is null)
                     return null;
-                
-                if (BuscarUser is null)
-                    return null;
+
+
+                postagem.Tema = BuscarFK;
+
             }
 
-            postagem.Tema = postagem.Tema is not null ? _context.Temas.FirstOrDefault(t => t.Id == postagem.Tema.Id) : null;
-            postagem.User = postagem.User is not null ? _context.Users.FirstOrDefault(u => u.Id == postagem.User.Id) : null;
+
 
             await _context.Postagens.AddAsync(postagem);
             await _context.SaveChangesAsync();
@@ -86,21 +85,17 @@ namespace FelizMente.Service.Implements
             if (PostagemUpdate is null)
                 return null;
 
-            if (postagem.Tema is not null && postagem.User is not null)
+            if (postagem.Tema is not null)
             {
-                var BuscarFK = await _context.Temas.FindAsync(postagem.Tema.Id);
-                var BuscarUser = await _context.Temas.FindAsync(postagem.User.Id);
+                var BuscarFK = await _context.Temas.FindAsync(postagem.Tema.Id);             
 
                 if (BuscarFK is null)
                     return null;
 
-                if (BuscarUser is null)
-                    return null;
+                postagem.Tema = BuscarFK;
             }
 
-            postagem.Tema = postagem.Tema is not null ? _context.Temas.FirstOrDefault(t => t.Id == postagem.Tema.Id) : null;
-            postagem.User = postagem.User is not null ? _context.Users.FirstOrDefault(u => u.Id == postagem.User.Id) : null;
-
+            
             _context.Entry(PostagemUpdate).State = EntityState.Detached;
             _context.Entry(postagem).State = EntityState.Modified;
             await _context.SaveChangesAsync();
