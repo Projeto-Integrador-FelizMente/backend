@@ -29,6 +29,7 @@ namespace FelizMente
 
             builder.Services.AddScoped<ITemaService, TemaService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IPostagemService, PostagemService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
