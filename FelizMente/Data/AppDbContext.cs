@@ -1,6 +1,5 @@
 ﻿using FelizMente.Model;
 using Microsoft.EntityFrameworkCore;
-using System.Security.AccessControl;
 
 namespace FelizMente.Data
 {
@@ -12,8 +11,8 @@ namespace FelizMente.Data
         {
 
             modelBuilder.Entity<Tema>().ToTable("tb_temas");
-            modelBuilder.Entity<User>().ToTable("tb_usuario");
-            
+            modelBuilder.Entity<User>().ToTable("tb_usuarios");
+
 
         }
         public DbSet<Tema> Temas { get; set; } = null!;

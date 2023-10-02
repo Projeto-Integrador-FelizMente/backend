@@ -1,8 +1,8 @@
 
 using FelizMente.Data;
 using FelizMente.Model;
-using FelizMente.Service.Implements;
 using FelizMente.Service;
+using FelizMente.Service.Implements;
 using FelizMente.Validator;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -24,8 +24,10 @@ namespace FelizMente
                  options.UseSqlServer(connectionString));
 
             builder.Services.AddTransient<IValidator<Tema>, TemaValidator>();
+            builder.Services.AddTransient<IValidator<User>, UserValidator>();
 
             builder.Services.AddScoped<ITemaService, TemaService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
