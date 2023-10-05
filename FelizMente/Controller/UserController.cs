@@ -28,7 +28,7 @@ namespace FelizMente.Controller
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<ActionResult> GetAll()
         {
             return Ok(await _userService.GetAll());
@@ -61,7 +61,7 @@ namespace FelizMente.Controller
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("cadastrar")]
         public async Task<ActionResult> Create([FromBody] User user)
         {
 
@@ -82,7 +82,7 @@ namespace FelizMente.Controller
         }
 
         [Authorize]
-        [HttpPut]
+        [HttpPut("atualizar")]
         public async Task<ActionResult> Update([FromBody] User user)
         {
             if (user.Id == 0)
@@ -115,8 +115,6 @@ namespace FelizMente.Controller
 
             return Ok(Resposta);
         }
-
-
     }
 }
 

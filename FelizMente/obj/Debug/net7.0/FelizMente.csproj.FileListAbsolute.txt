@@ -407,3 +407,5 @@ C:\Users\LENOVO\Desktop\Projeto integrador\backend\FelizMente\obj\Debug\net7.0\F
 C:\Users\LENOVO\Desktop\Projeto integrador\backend\FelizMente\obj\Debug\net7.0\ref\FelizMente.dll
 C:\Users\lucas\OneDrive\Área de Trabalho\Projeto Integrador\BackEnd\backend\FelizMente\bin\Debug\net7.0\BCrypt.Net-Core.dll
 C:\Users\lucas\OneDrive\Área de Trabalho\Projeto Integrador\BackEnd\backend\FelizMente\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\projetos\PIGeneration\BackEnd\backend\FelizMente\bin\Debug\net7.0\BCrypt.Net-Core.dll
+D:\projetos\PIGeneration\BackEnd\backend\FelizMente\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
