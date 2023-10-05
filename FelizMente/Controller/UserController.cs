@@ -95,19 +95,8 @@ namespace FelizMente.Controller
 
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
-        {
-            var BuscaUsuario = await _userService.GetById(id);
 
-            if (BuscaUsuario is null)
-                return NotFound("User não foi encontrada!");
-
-            await _userService.Delete(BuscaUsuario);
-
-            return NoContent();
-
-        }
+        
     }
 }
 

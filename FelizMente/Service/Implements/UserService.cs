@@ -24,10 +24,15 @@ namespace FelizMente.Service.Implements
         {
             try
             {
-                var User = await _context.Users
-                            .Include(u => u.Postagem)
-                            .FirstAsync(u => u.Id == id);
-                return User;
+
+                var Usuario = await _context.Users
+
+                    .FirstAsync(i => i.Id == id);
+
+                Usuario.Senha = "";
+
+                return Usuario;
+
             }
             catch
             {
@@ -52,32 +57,47 @@ namespace FelizMente.Service.Implements
              .ToListAsync();
             return User;
         }
-
-        public async Task<User?> Create(User user)
+        public async Task<User?> GetByUsuario(string usuario)
         {
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-            return user;
+
+            var BuscaUsuario = await _context.Users
+                .Include(u => u.Postagem)
+                .Where(u => u.Usuario == usuario)
+                .FirstOrDefaultAsync();
+
+            return BuscaUsuario;
+
+
         }
 
-        public async Task<User?> Update(User user)
+        public async Task<User?> Create(User usuario)
         {
-            var UserUpdate = await _context.Users.FindAsync(user.Id);
+            var BuscaUsuario = await GetByUsuario(usuario.Usuario);
+
+            if (BuscaUsuario is not null)
+                return null;
+
+            usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha, workFactor: 10);
+
+            await _context.Users.AddAsync(usuario);
+            await _context.SaveChangesAsync();
+
+            return usuario;
+        }
+
+        public async Task<User?> Update(User usuario)
+        {
+            var UserUpdate = await _context.Users.FindAsync(usuario.Id);
 
             if (UserUpdate is null)
                 return null;
 
             _context.Entry(UserUpdate).State = EntityState.Detached;
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(usuario).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-            return user;
+            return usuario;
         }
 
-        public async Task Delete(User user)
-        {
-            _context.Remove(user);
-            await _context.SaveChangesAsync();
-        }
     }
 }
