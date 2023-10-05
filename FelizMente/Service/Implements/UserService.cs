@@ -49,11 +49,11 @@ namespace FelizMente.Service.Implements
             return User;
         }
 
-        public async Task<IEnumerable<User>> GetByTipo(bool tipo)
+        public async Task<IEnumerable<User>> GetByTipo(string tipo)
         {
             var User = await _context.Users
              .Include(u => u.Postagem)
-             .Where(u => u.Tipo == tipo)
+             .Where(u => u.Tipo.Contains(tipo))
              .ToListAsync();
             return User;
         }

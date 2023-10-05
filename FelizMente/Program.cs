@@ -1,11 +1,15 @@
 
 using FelizMente.Data;
 using FelizMente.Model;
+using FelizMente.Security;
 using FelizMente.Service;
 using FelizMente.Service.Implements;
 using FelizMente.Validator;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace FelizMente
 {
@@ -36,6 +40,26 @@ namespace FelizMente
             builder.Services.AddScoped<ITemaService, TemaService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IPostagemService, PostagemService>();
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                var key = Encoding.UTF8.GetBytes(Settings.Secret);
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key)
+
+                };
+            });
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -68,6 +92,8 @@ namespace FelizMente
             }
 
             app.UseCors("MyPolicy");
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

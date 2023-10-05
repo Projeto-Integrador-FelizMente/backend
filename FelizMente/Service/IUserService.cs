@@ -7,7 +7,7 @@ namespace FelizMente.Service
         Task<IEnumerable<User>> GetAll();
         Task<User?> GetById(long id);
         Task<IEnumerable<User>> GetByNome(string nome);
-        Task<IEnumerable<User>> GetByTipo(bool tipo);
+        Task<IEnumerable<User>> GetByTipo(string tipo);
         Task<User?> GetByUsuario(string usuario);
         Task<User?> Create(User user);
         Task<User?> Update(User user);

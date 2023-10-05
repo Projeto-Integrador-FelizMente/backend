@@ -3377,19 +3377,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LENOVO\\.nuget\\packages\\": {}
+    "C:\\Users\\lucas\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LENOVO\\Desktop\\Projeto integrador\\backend\\FelizMente\\FelizMente.csproj",
+      "projectUniqueName": "C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Projeto Integrador\\BackEnd\\backend\\FelizMente\\FelizMente.csproj",
       "projectName": "FelizMente",
-      "projectPath": "C:\\Users\\LENOVO\\Desktop\\Projeto integrador\\backend\\FelizMente\\FelizMente.csproj",
-      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LENOVO\\Desktop\\Projeto integrador\\backend\\FelizMente\\obj\\",
+      "projectPath": "C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Projeto Integrador\\BackEnd\\backend\\FelizMente\\FelizMente.csproj",
+      "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Projeto Integrador\\BackEnd\\backend\\FelizMente\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

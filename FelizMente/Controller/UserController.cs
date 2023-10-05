@@ -1,6 +1,8 @@
 ﻿using FelizMente.Model;
+using FelizMente.Security;
 using FelizMente.Service;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FelizMente.Controller
@@ -13,22 +15,26 @@ namespace FelizMente.Controller
 
         private readonly IUserService _userService;
         private readonly IValidator<User> _userValidator;
+        private readonly IAuthService _authService;
 
         public UserController(
             IUserService userService,
-            IValidator<User> userValidator
-            )
+            IValidator<User> userValidator,
+            IAuthService authService)
         {
             _userService = userService;
             _userValidator = userValidator;
+            _authService = authService;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
             return Ok(await _userService.GetAll());
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(long id)
         {
@@ -40,19 +46,21 @@ namespace FelizMente.Controller
             return Ok(Resposta);
         }
 
+        [Authorize]
         [HttpGet("nome/{nome}")]
         public async Task<ActionResult> GetByNome(string nome)
         {
             return Ok(await _userService.GetByNome(nome));
         }
 
-
+        [Authorize]
         [HttpGet("tipo/{tipo}")]
-        public async Task<ActionResult> GetByTipo(bool tipo)
+        public async Task<ActionResult> GetByTipo(string tipo)
         {
             return Ok(await _userService.GetByTipo(tipo));
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] User user)
         {
@@ -73,6 +81,7 @@ namespace FelizMente.Controller
 
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<ActionResult> Update([FromBody] User user)
         {
@@ -95,8 +104,19 @@ namespace FelizMente.Controller
 
         }
 
+        [AllowAnonymous]
+        [HttpPost("logar")]
+        public async Task<ActionResult> Autenticar([FromBody] UserLogin usuarioLogin)
+        {
+            var Resposta = await _authService.Autenticar(usuarioLogin);
 
-        
+            if (Resposta is null)
+                return Unauthorized("Usuário e/ou Senha inválidos!");
+
+            return Ok(Resposta);
+        }
+
+
     }
 }
 

@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using FelizMente.Validator;
 using FelizMente.Service;
 using FelizMente.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FelizMente.Controllers
 {
+    [Authorize]
     [Route("~/tema")]
     [ApiController]
     public class TemaControllers : ControllerBase

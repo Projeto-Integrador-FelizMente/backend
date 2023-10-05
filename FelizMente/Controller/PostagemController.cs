@@ -1,10 +1,12 @@
 ﻿using FelizMente.Model;
 using FelizMente.Service;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FelizMente.Controller
 {
+    [Authorize]
     [Route("~/postagens")]
     [ApiController]
     public class PostagemController : ControllerBase

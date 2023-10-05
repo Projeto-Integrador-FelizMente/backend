@@ -26,7 +26,9 @@ namespace FelizMente.Validator
 
 
             RuleFor(u => u.Tipo)
-               .NotEmpty();
+               .NotEmpty()
+               .MinimumLength(5)
+               .MaximumLength(255);
 
 
             RuleFor(u => u.Foto)
