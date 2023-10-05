@@ -26,7 +26,6 @@ namespace FelizMente.Validator
 
 
             RuleFor(u => u.Tipo)
-               .NotEmpty()
                .MinimumLength(5)
                .MaximumLength(255);
 

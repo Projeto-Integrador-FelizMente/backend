@@ -27,7 +27,8 @@ namespace FelizMente.Model
 
         [Column(TypeName = "varchar")]
         [StringLength(255)]
-        public string Tipo { get; set; }
+        public string Tipo { get; set; } = string.Empty;
+
         [InverseProperty("User")]
         public virtual ICollection<Postagem>? Postagem { get; set; }
     }

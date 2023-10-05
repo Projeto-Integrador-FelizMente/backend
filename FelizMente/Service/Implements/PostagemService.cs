@@ -71,7 +71,7 @@ namespace FelizMente.Service.Implements
 
             }
 
-
+            postagem.User = postagem.User is not null ? await _context.Users.FirstOrDefaultAsync(u => u.Id == postagem.User.Id) : null;
 
             await _context.Postagens.AddAsync(postagem);
             await _context.SaveChangesAsync();
@@ -95,7 +95,8 @@ namespace FelizMente.Service.Implements
                 postagem.Tema = BuscarFK;
             }
 
-            
+            postagem.User = postagem.User is not null ? await _context.Users.FirstOrDefaultAsync(u => u.Id == postagem.User.Id) : null;
+
             _context.Entry(PostagemUpdate).State = EntityState.Detached;
             _context.Entry(postagem).State = EntityState.Modified;
             await _context.SaveChangesAsync();

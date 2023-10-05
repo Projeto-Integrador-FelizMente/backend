@@ -2,6 +2,7 @@
 using FelizMente.Data;
 using FelizMente.Model;
 using FelizMente.Security;
+using FelizMente.Security.Implements;
 using FelizMente.Service;
 using FelizMente.Service.Implements;
 using FelizMente.Validator;
@@ -40,6 +41,7 @@ namespace FelizMente
             builder.Services.AddScoped<ITemaService, TemaService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IPostagemService, PostagemService>();
+            builder.Services.AddTransient<IAuthService, AuthService>();
 
             builder.Services.AddAuthentication(options =>
             {
