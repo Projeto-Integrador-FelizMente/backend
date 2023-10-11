@@ -49,7 +49,7 @@ namespace FelizMente.Controller
 
 
         [HttpGet("estado/{estado}")]
-        public async Task<ActionResult> GetByEstado(bool estado)
+        public async Task<ActionResult> GetByEstado(string estado)
         {
             return Ok(await _postagemService.GetByEstado(estado));
         }

@@ -40,29 +40,29 @@ namespace FelizMente.Service.Implements
         public async Task<IEnumerable<Postagem>> GetByTitulo(string titulo)
         {
             var Postagem = await _context.Postagens
-              .Include(p => p.Tema)
-              .Include(p => p.User)
-              .Where(p => p.Titulo.Contains(titulo))
-              .ToListAsync();
+                          .Include(p => p.Tema)
+                          .Include(p => p.User)
+                          .Where(p => p.Titulo.Contains(titulo))
+                          .ToListAsync();
             return Postagem;
         }
 
-        public async Task<IEnumerable<Postagem>> GetByEstado(bool estado)
+        public async Task<IEnumerable<Postagem>> GetByEstado(string estado)
         {
             var Postagem = await _context.Postagens
                          .Include(p => p.Tema)
                          .Include(p => p.User)
-                         .Where(p => p.Estado == estado)
+                         .Where(p => p.Estado.Contains(estado))
                          .ToListAsync();
             return Postagem;
         }
 
         public async Task<Postagem?> Create(Postagem postagem)
         {
-            if (postagem.Tema is not null )
+            if (postagem.Tema is not null)
             {
                 var BuscarFK = await _context.Temas.FindAsync(postagem.Tema.Id);
-               
+
                 if (BuscarFK is null)
                     return null;
 
@@ -87,7 +87,7 @@ namespace FelizMente.Service.Implements
 
             if (postagem.Tema is not null)
             {
-                var BuscarFK = await _context.Temas.FindAsync(postagem.Tema.Id);             
+                var BuscarFK = await _context.Temas.FindAsync(postagem.Tema.Id);
 
                 if (BuscarFK is null)
                     return null;

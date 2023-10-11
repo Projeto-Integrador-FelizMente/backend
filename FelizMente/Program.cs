@@ -29,16 +29,17 @@ namespace FelizMente
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
                 });
 
-           if (builder.Configuration["Environment:Start"] == "PROD")
+            if (builder.Configuration["Environment:Start"] == "PROD")
             {
                 // Conexão com o PostgresSQL - Nuvem
 
                 builder.Configuration
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("secrets.json");
-                
+
                 var connectionString = builder.Configuration
                .GetConnectionString("ProdConnection");
 
@@ -46,7 +47,7 @@ namespace FelizMente
                     options.UseNpgsql(connectionString)
                 );
             }
-            else 
+            else
             {
                 // Conexão com o SQL Server - Localhost
                 var connectionString = builder.Configuration

@@ -13,13 +13,15 @@ namespace FelizMente.Validator
               .MaximumLength(255);
 
             RuleFor(p => p.Estado)
-               .NotEmpty();
+               .NotEmpty()
+               .MinimumLength(4)
+               .MaximumLength(255);
 
             RuleFor(p => p.Texto)
               .NotEmpty()
               .MinimumLength(5);
 
-            RuleFor(p => p.Link)       
+            RuleFor(p => p.Link)
               .MaximumLength(255);
 
         }
