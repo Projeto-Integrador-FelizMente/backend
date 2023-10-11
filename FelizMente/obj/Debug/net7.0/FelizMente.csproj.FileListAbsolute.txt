@@ -409,3 +409,9 @@ C:\Users\lucas\OneDrive\Área de Trabalho\Projeto Integrador\BackEnd\backend\Fel
 C:\Users\lucas\OneDrive\Área de Trabalho\Projeto Integrador\BackEnd\backend\FelizMente\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\projetos\PIGeneration\BackEnd\backend\FelizMente\bin\Debug\net7.0\BCrypt.Net-Core.dll
 D:\projetos\PIGeneration\BackEnd\backend\FelizMente\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\projetos\PIGeneration\BackEnd\backend\FelizMente\bin\Debug\net7.0\MicroElements.Swashbuckle.FluentValidation.dll
+D:\projetos\PIGeneration\BackEnd\backend\FelizMente\bin\Debug\net7.0\Npgsql.dll
+D:\projetos\PIGeneration\BackEnd\backend\FelizMente\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\projetos\PIGeneration\BackEnd\backend\FelizMente\bin\Debug\net7.0\Scrutor.dll
+D:\projetos\PIGeneration\BackEnd\backend\FelizMente\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+D:\projetos\PIGeneration\BackEnd\backend\FelizMente\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
