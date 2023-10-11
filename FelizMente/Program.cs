@@ -34,7 +34,7 @@ namespace FelizMente
 
             if (builder.Configuration["Environment:Start"] == "PROD")
             {
-                // Conex„o com o PostgresSQL - Nuvem
+                // Conex√£o com o PostgresSQL - Nuvem
 
                 builder.Configuration
                     .SetBasePath(Directory.GetCurrentDirectory())
@@ -49,7 +49,7 @@ namespace FelizMente
             }
             else
             {
-                // Conex„o com o SQL Server - Localhost
+                // Conex√£o com o SQL Server - Localhost
                 var connectionString = builder.Configuration
                 .GetConnectionString("DefaultConnection");
 
@@ -94,7 +94,7 @@ namespace FelizMente
             builder.Services.AddSwaggerGen(options =>
             {
 
-                //Personalizar a P·gna inicial do Swagger
+                //Personalizar a P√°gna inicial do Swagger
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
@@ -113,18 +113,18 @@ namespace FelizMente
                     }
                 });
 
-                //Adicionar a SeguranÁa no Swagger
+                //Adicionar a Seguran√ßa no Swagger
                 options.AddSecurityDefinition("JWT", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
-                    Description = "Digite um Token JWT v·lido!",
+                    Description = "Digite um Token JWT v√°lido!",
                     Name = "Authorization",
                     Type = SecuritySchemeType.Http,
                     BearerFormat = "JWT",
                     Scheme = "Bearer"
                 });
 
-                //Adicionar a configuraÁ„o visual da SeguranÁa no Swagger
+                //Adicionar a configura√ß√£o visual da Seguran√ßa no Swagger
                 options.OperationFilter<AuthResponsesOperationFilter>();
 
             });
@@ -144,6 +144,8 @@ namespace FelizMente
 
 
             var app = builder.Build();
+
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
             using (var scope = app.Services.CreateAsyncScope())
             {
