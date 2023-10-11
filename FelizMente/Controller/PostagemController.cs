@@ -68,7 +68,7 @@ namespace FelizMente.Controller
             var Resposta = await _postagemService.Create(postagem);
 
             if (Resposta is null)
-                return BadRequest("Postagem não encontrada!");
+                return BadRequest("Tema não encontrada!");
 
             return CreatedAtAction(nameof(GetById), new { id = postagem.Id }, postagem);
 
