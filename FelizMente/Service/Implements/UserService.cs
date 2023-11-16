@@ -77,6 +77,9 @@ namespace FelizMente.Service.Implements
             if (BuscaUsuario is not null)
                 return null;
 
+            if (usuario.Foto is null || usuario.Foto == "")
+                usuario.Foto = "https://i.imgur.com/I8MfmC8.png";
+            
             usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha, workFactor: 10);
 
             await _context.Users.AddAsync(usuario);
@@ -92,6 +95,11 @@ namespace FelizMente.Service.Implements
             if (UserUpdate is null)
                 return null;
 
+            if (usuario.Foto is null || usuario.Foto == "")
+                usuario.Foto = "https://i.imgur.com/I8MfmC8.png";
+            
+             usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha, workFactor: 10);
+            
             _context.Entry(UserUpdate).State = EntityState.Detached;
             _context.Entry(usuario).State = EntityState.Modified;
             await _context.SaveChangesAsync();
