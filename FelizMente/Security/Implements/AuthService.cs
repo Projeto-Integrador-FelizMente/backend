@@ -51,6 +51,7 @@ namespace FelizMente.Security.Implements
             userLogin.Foto = BuscaUsuario.Foto is null ? FotoDefault : BuscaUsuario.Foto;
             userLogin.Token = "Bearer " + tokenHandler.WriteToken(token).ToString();
             userLogin.Senha = "";
+            userLogin.Tipo = BuscaUsuario.Tipo;
 
             return userLogin;
         }
