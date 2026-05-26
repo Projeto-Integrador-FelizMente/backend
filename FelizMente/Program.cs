@@ -153,11 +153,11 @@ namespace FelizMente
 
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-            using (var scope = app.Services.CreateAsyncScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                dbContext.Database.EnsureCreated();
-            }
+            // using (var scope = app.Services.CreateAsyncScope())
+            // {
+            //     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            //     dbContext.Database.EnsureCreated();
+            // }
             // Configure the HTTP request pipeline
             app.UseSwagger();
             app.UseSwaggerUI();
