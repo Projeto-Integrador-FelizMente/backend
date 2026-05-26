@@ -32,38 +32,21 @@ namespace FelizMente
                     options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
                 });
 
-            if (builder.Configuration["Environment:Start"] == "PROD")
-            {
-                // Conexão com o PostgresSQL - Nuvem
 
-                builder.Configuration
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("secrets.json");
 
-                // === CONFIGURAÇÃO DO BANCO ===
-                var connectionString = builder.Configuration.GetConnectionString("ProdConnection")
-                                    ?? builder.Configuration["DATABASE_URL"]
-                                    ?? builder.Configuration["ConnectionStrings:ProdConnection"];
+            // === CONFIGURAÇÃO DO BANCO ===
+            var connectionString = builder.Configuration.GetConnectionString("ProdConnection")
+                ?? builder.Configuration["DATABASE_URL"];
 
-                if (string.IsNullOrEmpty(connectionString))
-                    throw new Exception("❌ Connection string não encontrada. Verifique as variáveis no Render.");
+            if (string.IsNullOrEmpty(connectionString))
+                throw new Exception("❌ Connection string não encontrada no Render. Verifique a variável DATABASE_URL.");
 
-                builder.Services.AddDbContext<AppDbContext>(options =>
-                    options.UseNpgsql(connectionString, npgsqlOptions =>
-                    {
-                        npgsqlOptions.EnableRetryOnFailure(3);
-                    }));
-            }
-            else
-            {
-                // Conexão com o SQL Server - Localhost
-                var connectionString = builder.Configuration
-                .GetConnectionString("DefaultConnection");
-
-                builder.Services.AddDbContext<AppDbContext>(options =>
-                    options.UseSqlServer(connectionString)
-                );
-            }
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(connectionString, npgsqlOptions =>
+                {
+                    npgsqlOptions.EnableRetryOnFailure(3);
+                }));
+          
 
             builder.Services.AddTransient<IValidator<Tema>, TemaValidator>();
             builder.Services.AddTransient<IValidator<User>, UserValidator>();
