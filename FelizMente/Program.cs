@@ -40,12 +40,13 @@ namespace FelizMente
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("secrets.json");
 
-               // === CONFIGURAÇÃO DO BANCO - Substitua o bloco atual ===
-                var connectionString = builder.Configuration.GetConnectionString("ProdConnection") 
-                                    ?? builder.Configuration["DATABASE_URL"];
+                // === CONFIGURAÇÃO DO BANCO ===
+                var connectionString = builder.Configuration.GetConnectionString("ProdConnection")
+                                    ?? builder.Configuration["DATABASE_URL"]
+                                    ?? builder.Configuration["ConnectionStrings:ProdConnection"];
 
                 if (string.IsNullOrEmpty(connectionString))
-                    throw new Exception("Connection string não encontrada no Render");
+                    throw new Exception("❌ Connection string não encontrada. Verifique as variáveis no Render.");
 
                 builder.Services.AddDbContext<AppDbContext>(options =>
                     options.UseNpgsql(connectionString, npgsqlOptions =>
