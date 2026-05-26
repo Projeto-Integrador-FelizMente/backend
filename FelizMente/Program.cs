@@ -40,7 +40,7 @@ namespace FelizMente
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("secrets.json");
 
-               // === CONFIGURAÇÃO DO BANCO (substitua o bloco antigo) ===
+               // === CONFIGURAÇÃO DO BANCO - Substitua o bloco atual ===
                 var connectionString = builder.Configuration.GetConnectionString("ProdConnection") 
                                     ?? builder.Configuration["DATABASE_URL"];
 
@@ -50,8 +50,7 @@ namespace FelizMente
                 builder.Services.AddDbContext<AppDbContext>(options =>
                     options.UseNpgsql(connectionString, npgsqlOptions =>
                     {
-                        npgsqlOptions.EnableRetryOnFailure(3);           // tenta reconectar
-                        npgsqlOptions.TrustServerCertificate = true;     // importante no Render
+                        npgsqlOptions.EnableRetryOnFailure(3);
                     }));
             }
             else
